@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="menu_colors">
+        <item>#c0ff3d39</item>
+        <item>#c0b62421</item>
+        <item>#c0d4201c</item>
+        <item>#c0fd625f</item>
+        <item>#c0e93834</item>
+        <item>#c0b94542</item>
+        <item>#c0ef4743</item>
+        <item>#c091211e</item>
+        <item>#c0af3c39</item>
+        <item>#c0f2625f</item>
+        <item>#c0f25c58</item>
+        <item>#c0b93835</item>
+        <item>#c0bc3734</item>
+        <item>#c0c7514e</item>
+        <item>#c0ff3d39</item>
+    </string-array>
+</resources>

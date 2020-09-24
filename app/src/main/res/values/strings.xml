@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">English Valley</string>
+    <string name="bottom_current">Current</string>
+    <string name="bottom_all">All</string>
+    <string name="bottom_favourite">Favourite</string>
+    <string name="jokes">Jokes</string>
+    <string name="abbreviations">Abbreviations</string>
+    <string name="adjectives">Adjectives</string>
+    <string name="idioms">Idioms</string>
+    <string name="philosophy">Philosophy</string>
+    <string name="quotes">Quotes</string>
+    <string name="palindromes">Palindromes</string>
+    <string name="riddles">Riddles</string>
+    <string name="murphy_lows">Murphy lows</string>
+    <string name="oxymorons">Oxymorons</string>
+    <string name="tongue_twisters">Tongue-twisters</string>
+    <string name="tips">Tips</string>
+    <string name="symbols">Symbols</string>
+    <string name="proverbs">Proverbs</string>
+    <string name="sheep_apps_link"><a href="https://sheep-apps.com">sheep-apps.com</a></string>
+    <string name="powered_sheep_apps">Developed and powered by Sheep Apps LLC</string>
+    <string name="about">About</string>
+    <string name="copied_msg">Copied to clipboard</string>
+    <string name="added_to_favorites">Added to favourites</string>
+    <string name="removed_from_favorites">Removed from favourites</string>
+    <string name="empty_favorites">Favourite list is empty!</string>
+    <string name="settings">Settings</string>
+    <string name="date_down">Date down</string>
+    <string name="sorting">Sorting</string>
+    <string name="remove_ads">Remove ads</string>
+    <string name="num_of_words_in_mixed">Num of words in mixed</string>
+    <string name="category">Category</string>
+    <string name="date_up">Date up</string>
+
+    <string-array name="menu_colors">
+        <item>#c0ff3d39</item>
+        <item>#c0b62421</item>
+        <item>#c0d4201c</item>
+        <item>#c0fd625f</item>
+        <item>#c0e93834</item>
+        <item>#c0b94542</item>
+        <item>#c0ef4743</item>
+        <item>#c091211e</item>
+        <item>#c0af3c39</item>
+        <item>#c0f2625f</item>
+        <item>#c0f25c58</item>
+        <item>#c0b93835</item>
+        <item>#c0bc3734</item>
+        <item>#c0c7514e</item>
+        <item>#c0ff3d39</item>
+        <item>#c0b62421</item>
+    </string-array>
+</resources>

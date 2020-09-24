@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.sheepapps.englishvalley.viewmodels.CardViewModel" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardView"
+        android:layout_margin="15dp"
+        card_view:cardElevation="15dp"
+        card_view:cardCornerRadius="10dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:background="@color/colorCardHead"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:padding="10dp"
+                    android:textSize="@dimen/category_name_item_size"
+                    android:text="@{viewModel.categoryString}"
+                    android:visibility="@{viewModel.categoryVisibility}"/>
+
+                <LinearLayout
+                    android:id="@+id/card_linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:onClick="@{v -> viewModel.onCardClick()}"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.main}"
+                        android:textIsSelectable="true"
+                        android:onClick="@{v -> viewModel.onCardClick()}"
+                        android:textStyle="bold"
+                        style="@style/main_item_style" />
+
+                    <TextView
+                        android:id="@+id/card_sense_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/labelItemStyle"
+                        android:animateLayoutChanges="true"
+                        android:text="@{viewModel.senseDescription}"
+                        android:visibility="@{viewModel.senseDescriptionVisibility}"/>
+
+                    <TextView
+                        android:id="@+id/card_sense"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.sense}"
+                        android:textIsSelectable="true"
+                        android:animateLayoutChanges="true"
+                        android:visibility="@{viewModel.senseVisibility}"
+                        style="@style/senseItemStyle"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/labelItemStyle"
+                        android:text="@{viewModel.exampleDescription}"
+                        android:visibility="@{viewModel.exampleDescriptionVisibility}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.example}"
+                        android:textIsSelectable="true"
+                        android:visibility="@{viewModel.exampleVisibility}"
+                        style="@style/exampleItemStyle"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/labelItemStyle"
+                        android:text="@{viewModel.extraDescription}"
+                        android:visibility="@{viewModel.extraDescriptionVisibility}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.extra}"
+                        android:textIsSelectable="true"
+                        android:visibility="@{viewModel.extraVisibility}"
+                        style="@style/extraItemStyle"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="20dp">
+
+                        <ImageButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            style="@style/cardButtonStyle"
+                            android:layout_weight="0.3"
+                            android:onClick="@{v -> viewModel.onShareClicked()}"
+                            android:src="@drawable/ic_share"/>
+
+                        <ImageButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            style="@style/cardButtonStyle"
+                            android:layout_weight="0.3"
+                            android:onClick="@{v -> viewModel.onSelectClicked()}"
+                            android:src="@drawable/ic_select"/>
+
+                        <ImageButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            style="@style/cardButtonStyle"
+                            android:tint="@{viewModel.isFavorite ? @color/colorPrimary : @android:color/black}"
+                            android:layout_weight="0.3"
+                            android:onClick="@{v -> viewModel.onFavouriteClicked()}"
+                            android:src="@drawable/ic_favorite" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

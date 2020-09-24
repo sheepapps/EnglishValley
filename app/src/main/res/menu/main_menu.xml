@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="@string/settings"
+        android:id="@+id/settings_menu" />
+
+    <item
+        android:title="@string/about"
+        android:id="@+id/about_menu" />
+
+    <item
+        android:title="@string/sorting"
+        android:id="@+id/sorting_menu"
+        android:visible="false"
+        android:icon="@drawable/ic_sort"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:title="@string/category"
+                android:id="@+id/category_menu"
+                android:icon="@drawable/ic_by_category" />
+            <item
+                android:title="@string/date_down"
+                android:id="@+id/date_down_menu"
+                android:icon="@drawable/ic_arrow_down" />
+            <item
+                android:title="@string/date_up"
+                android:id="@+id/date_up_menu"
+                android:icon="@drawable/ic_arrow_up" />
+        </menu>
+    </item>
+
+</menu>

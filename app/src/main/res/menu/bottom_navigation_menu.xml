@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_all"
+        android:title="@string/bottom_all"
+        android:icon="@drawable/ic_all_white" />
+    <item android:id="@+id/action_current"
+        android:title="@string/bottom_current"
+        android:icon="@drawable/ic_current_white" />
+    <item android:id="@+id/action_favorite"
+        android:title="@string/bottom_favourite"
+        android:icon="@drawable/ic_favorite_white" />
+</menu>

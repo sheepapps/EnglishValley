@@ -1,0 +1,36 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.sheepapps.englishvalley.viewmodels.MenuViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.sheepapps.englishvalley.views.MenuFragment">
+
+        <com.gjiazhe.panoramaimageview.PanoramaImageView
+            android:id="@+id/menuBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/london"
+            app:piv_enablePanoramaMode="true"
+            app:piv_show_scrollbar="false"
+            app:piv_invertScrollDirection="false"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/menuRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="category_name_item_size">18sp</dimen>
+    <dimen name="menu_text_categories_size">20sp</dimen>
+    <dimen name="menu_text_count_size">12sp</dimen>
+    <dimen name="main_item_size">20dp</dimen>
+    <dimen name="sense_item_size">16dp</dimen>
+    <dimen name="example_item_size">15dp</dimen>
+    <dimen name="extra_item_size">15dp</dimen>
+    <dimen name="label_item_size">13dp</dimen>
+    <dimen name="raw_margin_bottom">12dp</dimen>
+</resources>

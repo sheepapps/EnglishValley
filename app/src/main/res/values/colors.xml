@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#da0a06</color>
+    <color name="colorSecondary">#ff6e40</color>
+    <color name="colorPrimaryDark">#b61827</color>
+    <color name="colorAccent">#fc7976</color>
+    <color name="colorCardHead">#ce312e</color>
+    <color name="colorBackground">#ffffff</color>
+    <color name="main_item_color">#000000</color>
+    <color name="sense_item_color">#111231</color>
+    <color name="example_item_color">#000000</color>
+    <color name="extra_item_color">#111231</color>
+    <color name="label_item_color">#434343</color>
+    <color name="about_text_color">#000000</color>
+</resources>
