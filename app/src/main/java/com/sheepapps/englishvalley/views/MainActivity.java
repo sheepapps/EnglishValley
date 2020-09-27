@@ -10,18 +10,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.crashlytics.android.Crashlytics;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
+
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.sheepapps.englishvalley.R;
-import com.sheepapps.englishvalley.app.ValleyApp;
 import com.sheepapps.englishvalley.dialogs.MixedSettingsDialog;
+import com.sheepapps.englishvalley.helpers.FactHelper;
 import com.sheepapps.englishvalley.viewmodels.MainActivityViewModel;
 import com.sheepapps.englishvalley.viewmodels.MenuItemViewModel;
-import net.hockeyapp.android.CrashManager;
-import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements
         MenuItemViewModel.OnMenuItemClickedListener, BottomNavigationView.OnNavigationItemSelectedListener{
@@ -41,7 +36,12 @@ public class MainActivity extends AppCompatActivity implements
         mViewModel.getItemId().observe(this, this::selectBottomItem);
         bottomNavigationView.setSelectedItemId(mViewModel.getItemId().getValue());
         initAds();
+        initCatsFacts();
         getSupportActionBar().setTitle("My title");
+    }
+
+    private void initCatsFacts() {
+        new FactHelper().initFacts();
     }
 
     private void initAds() {

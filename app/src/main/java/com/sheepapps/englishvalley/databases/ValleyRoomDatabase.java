@@ -26,8 +26,9 @@ import com.sheepapps.englishvalley.databases.system.SystemDao;
         Tongue.class,
         Animation.class,
         Description.class,
-        Storage.class},
-        version = 3, exportSchema = false)
+        Storage.class,
+        CatsFacts.class},
+        version = 4, exportSchema = false)
 
 public abstract class ValleyRoomDatabase extends RoomDatabase {
     public abstract WordDao wordsDao();

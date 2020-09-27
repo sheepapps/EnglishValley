@@ -17,6 +17,7 @@ import com.sheepapps.englishvalley.R;
 import com.sheepapps.englishvalley.app.ValleyApp;
 import com.sheepapps.englishvalley.databases.Abbreviation;
 import com.sheepapps.englishvalley.databases.Adjective;
+import com.sheepapps.englishvalley.databases.CatsFacts;
 import com.sheepapps.englishvalley.databases.Idiom;
 import com.sheepapps.englishvalley.databases.Jokee;
 import com.sheepapps.englishvalley.databases.Murphy;
@@ -207,6 +208,7 @@ public class CardViewModel extends AndroidViewModel {
             case Categories.CATEGORY_SYMBOL: dao.updateSymbol((Symbol) mWordAbs); break;
             case Categories.CATEGORY_TIP: dao.updateTip((Tippp) mWordAbs); break;
             case Categories.CATEGORY_TONGUE: dao.updateTongue((Tongue) mWordAbs); break;
+            case Categories.CATEGORY_CATSFACTS: dao.updateCatsFacts((CatsFacts) mWordAbs); break;
         }
     }
 

@@ -2,11 +2,15 @@ package com.sheepapps.englishvalley.app;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.support.multidex.MultiDexApplication;
+
 import com.huma.room_for_asset.RoomAsset;
 import com.sheepapps.englishvalley.databases.Migrations;
 import com.sheepapps.englishvalley.databases.ValleyRoomDatabase;
 
-public class ValleyApp extends Application {
+import static com.sheepapps.englishvalley.databases.Migrations.MIGRATION_3_4;
+
+public class ValleyApp extends MultiDexApplication {
 
     private static final String PREFS = "shared_pref";
 
@@ -24,7 +28,7 @@ public class ValleyApp extends Application {
                 ValleyRoomDatabase.class,
                 "english_valley.db")
                 .allowMainThreadQueries()
-                .addMigrations(Migrations.MIGRATION_2_3)
+                .addMigrations(Migrations.MIGRATION_2_3, MIGRATION_3_4)
                 .build();
     }
 

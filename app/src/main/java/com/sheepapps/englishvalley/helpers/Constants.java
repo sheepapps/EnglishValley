@@ -18,9 +18,10 @@ public final class Constants {
         public static final int CATEGORY_QUOTE = 13;
         public static final int CATEGORY_JOKE = 14;
         public static final int CATEGORY_SILENT = 15;
+        public static final int CATEGORY_CATSFACTS = 16;
         public static final int MIXED_CATEGORY = -1;
 
-        public static final int CATEGORIES_COUNT = 15;
+        public static final int CATEGORIES_COUNT = 16;
         public static final String KEY_LAST_CATEGORY = "last_category";
     }
 

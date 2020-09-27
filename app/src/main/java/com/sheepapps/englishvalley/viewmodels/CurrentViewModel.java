@@ -9,6 +9,8 @@ import com.sheepapps.englishvalley.databases.system.Storage;
 import com.sheepapps.englishvalley.databases.system.SystemDao;
 import com.sheepapps.englishvalley.helpers.Constants;
 import com.sheepapps.englishvalley.helpers.MixedHelper;
+import com.sheepapps.englishvalley.helpers.FactHelper;
+
 import java.util.List;
 
 public class CurrentViewModel extends ViewModel {
@@ -72,6 +74,7 @@ public class CurrentViewModel extends ViewModel {
             case Constants.Categories.CATEGORY_SYMBOL: mWords = dao.getSymbols(); break;
             case Constants.Categories.CATEGORY_TIP: mWords = dao.getTips(); break;
             case Constants.Categories.CATEGORY_TONGUE: mWords = dao.getTongues(); break;
+            case Constants.Categories.CATEGORY_CATSFACTS: mWords = dao.getCatsFacts(); break;
             default: mWords = MixedHelper.getInstance().shuffle().getMixed(); break;
         }
         totalWords.set(mWords.size());

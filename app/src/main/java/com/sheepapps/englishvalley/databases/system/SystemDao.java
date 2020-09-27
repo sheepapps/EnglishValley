@@ -1,6 +1,8 @@
 package com.sheepapps.englishvalley.databases.system;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
@@ -29,4 +31,7 @@ public interface SystemDao {
 
     @Update
     void updateStorage(Storage storage);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void addSys(Storage storage);
 }

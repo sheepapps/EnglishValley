@@ -1,6 +1,8 @@
 package com.sheepapps.englishvalley.databases;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
@@ -53,6 +55,10 @@ public interface WordDao {
     @Query("SELECT * FROM tongue")
     List<Tongue> getTongues();
 
+    @Query("SELECT * FROM catsFacts")
+    List<CatsFacts> getCatsFacts();
+
+
     @Query("SELECT * FROM abbreviations WHERE favorite = 1")
     List<Abbreviation> getAbbreviationsFavorite();
 
@@ -98,6 +104,9 @@ public interface WordDao {
     @Query("SELECT * FROM tongue WHERE favorite = 1")
     List<Tongue> getTonguesFavorite();
 
+    @Query("SELECT * FROM catsFacts WHERE favorite = 1")
+    List<CatsFacts> getCatsFatsFavorite();
+
     @Update
     void updateAbbreviation(Abbreviation words);
 
@@ -142,4 +151,10 @@ public interface WordDao {
 
     @Update
     void updateTongue(Tongue words);
+
+    @Update
+    void updateCatsFacts(CatsFacts words);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void addCatsFact(CatsFacts catsFacts);
 }

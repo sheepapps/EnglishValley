@@ -4,6 +4,7 @@ import com.sheepapps.englishvalley.app.ValleyApp;
 import com.sheepapps.englishvalley.databases.WordAbs;
 import com.sheepapps.englishvalley.databases.WordDao;
 import com.sheepapps.englishvalley.databases.system.Storage;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -66,6 +67,7 @@ public class MixedHelper {
         mixedWords.addAll(dao.getAdjectives());
         mixedWords.addAll(dao.getJokes());
         mixedWords.addAll(dao.getIdioms());
+        mixedWords.addAll(dao.getCatsFacts());
     }
 
     private void setTotal() {
