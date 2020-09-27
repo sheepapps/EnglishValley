@@ -39,9 +39,9 @@ public class CardFragment extends Fragment {
             if (data == null) {
                 return;
             }
-            mViewModel.setWord(data);
             boolean isCategoryVisible = getArguments().getBoolean(CATEGORY_VISIBILITY);
             mViewModel.setCategoryVisibility(isCategoryVisible ? View.VISIBLE : View.GONE);
+            mViewModel.setWord(data);
         }
     }
 

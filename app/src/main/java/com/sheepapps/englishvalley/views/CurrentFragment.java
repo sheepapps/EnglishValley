@@ -53,6 +53,8 @@ public class CurrentFragment extends Fragment {
         if (mCurrentCategoryId == Constants.Categories.MIXED_CATEGORY) {
             title = "Mixed";
             isCategoryVisible = true;
+        } else if (mCurrentCategoryId == Constants.Categories.CATEGORY_FACT) {
+            title = "Facts";
         } else {
             title = ValleyApp.getInstance().getDb().systemDao()
                     .getStorageByCategoryId(mCurrentCategoryId).name;

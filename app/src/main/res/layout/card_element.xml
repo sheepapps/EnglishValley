@@ -129,6 +129,8 @@
 
                         <ImageButton
                             android:layout_width="0dp"
+                            android:clickable="@{viewModel.isClickable}"
+                            android:saveEnabled="@{viewModel.isClickable}"
                             android:layout_height="wrap_content"
                             style="@style/cardButtonStyle"
                             android:tint="@{viewModel.isFavorite ? @color/colorPrimary : @android:color/black}"

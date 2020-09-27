@@ -2,13 +2,16 @@ package com.sheepapps.englishvalley.viewmodels;
 
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableInt;
+
 import com.sheepapps.englishvalley.app.ValleyApp;
 import com.sheepapps.englishvalley.databases.WordDao;
 import com.sheepapps.englishvalley.databases.WordAbs;
 import com.sheepapps.englishvalley.databases.system.Storage;
 import com.sheepapps.englishvalley.databases.system.SystemDao;
 import com.sheepapps.englishvalley.helpers.Constants;
+import com.sheepapps.englishvalley.helpers.FactHelper;
 import com.sheepapps.englishvalley.helpers.MixedHelper;
+
 import java.util.List;
 
 public class CurrentViewModel extends ViewModel {
@@ -26,6 +29,8 @@ public class CurrentViewModel extends ViewModel {
         initList(category);
         if (mCategory == Constants.Categories.MIXED_CATEGORY) {
             initMixed();
+        } else if (mCategory == Constants.Categories.CATEGORY_FACT) {
+            initFacts();
         } else {
             initUsual();
         }
@@ -39,7 +44,9 @@ public class CurrentViewModel extends ViewModel {
             if (mStorage.completed < currentItem) {
                 mStorage.completed = currentItem;
             }
-            mSystemDao.updateStorage(mStorage);
+            if (mStorage.id != Constants.Categories.CATEGORY_FACT) {
+                mSystemDao.updateStorage(mStorage);
+            }
         }
     }
 
@@ -57,28 +64,69 @@ public class CurrentViewModel extends ViewModel {
         WordDao dao = ValleyApp.getInstance().getDb().wordsDao();
         mCategory = category;
         switch (category) {
-            case Constants.Categories.CATEGORY_JOKE : mWords = dao.getJokes(); break;
-            case Constants.Categories.CATEGORY_ABBREVIATION: mWords = dao.getAbbreviations(); break;
-            case Constants.Categories.CATEGORY_OPPOSITE: mWords = dao.getAdjectives(); break;
-            case Constants.Categories.CATEGORY_IDIOM: mWords = dao.getIdioms(); break;
-            case Constants.Categories.CATEGORY_MURPHY: mWords = dao.getMurphies(); break;
-            case Constants.Categories.CATEGORY_OXYMORON: mWords = dao.getOxymorons(); break;
-            case Constants.Categories.CATEGORY_PALINDROME: mWords = dao.getPalindromes(); break;
-            case Constants.Categories.CATEGORY_PHILOSOPHY: mWords = dao.getPhilosophies(); break;
-            case Constants.Categories.CATEGORY_PROVERB: mWords = dao.getProverbs(); break;
-            case Constants.Categories.CATEGORY_QUOTE: mWords = dao.getQuotes(); break;
-            case Constants.Categories.CATEGORY_RIDDLE: mWords = dao.getRiddles(); break;
-            case Constants.Categories.CATEGORY_SILENT: mWords = dao.getSilents(); break;
-            case Constants.Categories.CATEGORY_SYMBOL: mWords = dao.getSymbols(); break;
-            case Constants.Categories.CATEGORY_TIP: mWords = dao.getTips(); break;
-            case Constants.Categories.CATEGORY_TONGUE: mWords = dao.getTongues(); break;
-            default: mWords = MixedHelper.getInstance().shuffle().getMixed(); break;
+            case Constants.Categories.CATEGORY_JOKE:
+                mWords = dao.getJokes();
+                break;
+            case Constants.Categories.CATEGORY_ABBREVIATION:
+                mWords = dao.getAbbreviations();
+                break;
+            case Constants.Categories.CATEGORY_OPPOSITE:
+                mWords = dao.getAdjectives();
+                break;
+            case Constants.Categories.CATEGORY_IDIOM:
+                mWords = dao.getIdioms();
+                break;
+            case Constants.Categories.CATEGORY_MURPHY:
+                mWords = dao.getMurphies();
+                break;
+            case Constants.Categories.CATEGORY_OXYMORON:
+                mWords = dao.getOxymorons();
+                break;
+            case Constants.Categories.CATEGORY_PALINDROME:
+                mWords = dao.getPalindromes();
+                break;
+            case Constants.Categories.CATEGORY_PHILOSOPHY:
+                mWords = dao.getPhilosophies();
+                break;
+            case Constants.Categories.CATEGORY_PROVERB:
+                mWords = dao.getProverbs();
+                break;
+            case Constants.Categories.CATEGORY_QUOTE:
+                mWords = dao.getQuotes();
+                break;
+            case Constants.Categories.CATEGORY_RIDDLE:
+                mWords = dao.getRiddles();
+                break;
+            case Constants.Categories.CATEGORY_SILENT:
+                mWords = dao.getSilents();
+                break;
+            case Constants.Categories.CATEGORY_SYMBOL:
+                mWords = dao.getSymbols();
+                break;
+            case Constants.Categories.CATEGORY_TIP:
+                mWords = dao.getTips();
+                break;
+            case Constants.Categories.CATEGORY_TONGUE:
+                mWords = dao.getTongues();
+                break;
+            case Constants.Categories.CATEGORY_FACT:
+                mWords = FactHelper.INSTANCE.getFacts();
+                break;
+            default:
+                mWords = MixedHelper.getInstance().shuffle().getMixed();
+                break;
         }
         totalWords.set(mWords.size());
     }
 
     private void initMixed() {
         mStorage = MixedHelper.getInstance().getMixedStorage();
+    }
+
+    private void initFacts() {
+        mStorage = FactHelper.INSTANCE.getFactStorage();
+        currentWord.set(mStorage.current + 1);
+        completedWord.set(mStorage.completed + 1);
     }
 
     private void initUsual() {

@@ -50,6 +50,7 @@ public class CardViewModel extends AndroidViewModel {
     public final ObservableInt extraVisibility = new ObservableInt(View.GONE);
 
     public final ObservableBoolean isFavorite = new ObservableBoolean(false);
+    public final ObservableBoolean isClickable = new ObservableBoolean(true);
 
     public final ObservableField<String> senseDescription = new ObservableField<>("");
     public final ObservableField<String> exampleDescription = new ObservableField<>("");
@@ -103,7 +104,11 @@ public class CardViewModel extends AndroidViewModel {
         sense.set(wordAbs.sense);
         example.set(wordAbs.example);
         extra.set(wordAbs.extra);
-        isFavorite.set(wordAbs.favorite == 1);
+        if (wordAbs.category == Categories.CATEGORY_FACT) {
+            isClickable.set(false);
+        } else {
+            isFavorite.set(wordAbs.favorite == 1);
+        }
         if (wordAbs.sense != null) {
             senseVisibility.set(wordAbs.sense.length() > 0 ? View.VISIBLE : View.GONE);
         }
@@ -113,7 +118,12 @@ public class CardViewModel extends AndroidViewModel {
         if (wordAbs.extra != null) {
             extraVisibility.set(wordAbs.extra.length() > 0 ? View.VISIBLE : View.GONE);
         }
-        String description = DB.systemDao().getDescriptionByCategory(wordAbs.category);
+        String description = "";
+        if (wordAbs.category != Categories.CATEGORY_FACT) {
+            description = "category";
+        } else {
+            description = DB.systemDao().getDescriptionByCategory(wordAbs.category);
+        }
         parseDescription(description);
     }
 
@@ -211,9 +221,11 @@ public class CardViewModel extends AndroidViewModel {
     }
 
     private void setCategoryString() {
-        SystemDao dao = DB.systemDao();
-        Storage storage = dao.getStorageByCategoryId(mWordAbs.category);
-        categoryString.set(storage.name);
+        if (categoryVisibility.get() == View.VISIBLE) {
+            SystemDao dao = DB.systemDao();
+            Storage storage = dao.getStorageByCategoryId(mWordAbs.category);
+            categoryString.set(storage.name);
+        }
     }
 
     public void setCategoryVisibility(int visibility) {

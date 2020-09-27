@@ -13,6 +13,7 @@ import com.sheepapps.englishvalley.R;
 import com.sheepapps.englishvalley.app.ValleyApp;
 import com.sheepapps.englishvalley.databases.system.Storage;
 import com.sheepapps.englishvalley.databinding.MenuItemRawBinding;
+import com.sheepapps.englishvalley.helpers.FactHelper;
 import com.sheepapps.englishvalley.helpers.MixedHelper;
 import com.sheepapps.englishvalley.helpers.ScreenHelper;
 import com.sheepapps.englishvalley.viewmodels.MenuItemViewModel;
@@ -29,6 +30,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         ValleyApp app = ValleyApp.getInstance();
         mStorages = app.getDb().systemDao().getAllStorage();
         mStorages.add(0, MixedHelper.getInstance().getMixedStorage());
+        mStorages.add(1, FactHelper.INSTANCE.getFactStorage());
         sColumnCount = app.getResources().getInteger(R.integer.menu_col_count);
         mColors = app.getResources().getStringArray(R.array.menu_colors);
     }
