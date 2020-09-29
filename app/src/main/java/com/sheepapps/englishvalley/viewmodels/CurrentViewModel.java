@@ -9,6 +9,8 @@ import com.sheepapps.englishvalley.databases.system.Storage;
 import com.sheepapps.englishvalley.databases.system.SystemDao;
 import com.sheepapps.englishvalley.helpers.Constants;
 import com.sheepapps.englishvalley.helpers.MixedHelper;
+import com.sheepapps.englishvalley.helpers.QuoteHelper;
+
 import java.util.List;
 
 public class CurrentViewModel extends ViewModel {
@@ -60,13 +62,18 @@ public class CurrentViewModel extends ViewModel {
             case Constants.Categories.CATEGORY_JOKE : mWords = dao.getJokes(); break;
             case Constants.Categories.CATEGORY_ABBREVIATION: mWords = dao.getAbbreviations(); break;
             case Constants.Categories.CATEGORY_OPPOSITE: mWords = dao.getAdjectives(); break;
-            case Constants.Categories.CATEGORY_IDIOM: mWords = dao.getIdioms(); break;
+            case Constants.Categories.CATEGORY_IDIOM: mWords = dao.getIdioms();break;
             case Constants.Categories.CATEGORY_MURPHY: mWords = dao.getMurphies(); break;
             case Constants.Categories.CATEGORY_OXYMORON: mWords = dao.getOxymorons(); break;
             case Constants.Categories.CATEGORY_PALINDROME: mWords = dao.getPalindromes(); break;
             case Constants.Categories.CATEGORY_PHILOSOPHY: mWords = dao.getPhilosophies(); break;
             case Constants.Categories.CATEGORY_PROVERB: mWords = dao.getProverbs(); break;
-            case Constants.Categories.CATEGORY_QUOTE: mWords = dao.getQuotes(); break;
+            case Constants.Categories.CATEGORY_QUOTE:
+                QuoteHelper helper = new QuoteHelper();
+                helper.getList();
+                helper.addList(dao.getQuotes());
+                mWords = helper.getMyList();
+                break;
             case Constants.Categories.CATEGORY_RIDDLE: mWords = dao.getRiddles(); break;
             case Constants.Categories.CATEGORY_SILENT: mWords = dao.getSilents(); break;
             case Constants.Categories.CATEGORY_SYMBOL: mWords = dao.getSymbols(); break;
