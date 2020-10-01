@@ -1,14 +1,19 @@
 package com.sheepapps.englishvalley.viewmodels;
 
-import android.arch.lifecycle.ViewModel;
-import android.databinding.ObservableInt;
+import androidx.lifecycle.ViewModel;
+import androidx.databinding.ObservableInt;
+
+import com.sheepapps.englishvalley.API.RetrofitInstance;
 import com.sheepapps.englishvalley.app.ValleyApp;
+import com.sheepapps.englishvalley.databases.Quote;
 import com.sheepapps.englishvalley.databases.WordDao;
 import com.sheepapps.englishvalley.databases.WordAbs;
 import com.sheepapps.englishvalley.databases.system.Storage;
 import com.sheepapps.englishvalley.databases.system.SystemDao;
 import com.sheepapps.englishvalley.helpers.Constants;
 import com.sheepapps.englishvalley.helpers.MixedHelper;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentViewModel extends ViewModel {
@@ -66,7 +71,13 @@ public class CurrentViewModel extends ViewModel {
             case Constants.Categories.CATEGORY_PALINDROME: mWords = dao.getPalindromes(); break;
             case Constants.Categories.CATEGORY_PHILOSOPHY: mWords = dao.getPhilosophies(); break;
             case Constants.Categories.CATEGORY_PROVERB: mWords = dao.getProverbs(); break;
-            case Constants.Categories.CATEGORY_QUOTE: mWords = dao.getQuotes(); break;
+            case Constants.Categories.CATEGORY_QUOTE: {
+
+                ArrayList<Quote> words = new ArrayList<>();
+                words.addAll(RetrofitInstance.INSTANCE.getExtra());
+                words.addAll(dao.getQuotes());
+                mWords = words;
+                break;}
             case Constants.Categories.CATEGORY_RIDDLE: mWords = dao.getRiddles(); break;
             case Constants.Categories.CATEGORY_SILENT: mWords = dao.getSilents(); break;
             case Constants.Categories.CATEGORY_SYMBOL: mWords = dao.getSymbols(); break;

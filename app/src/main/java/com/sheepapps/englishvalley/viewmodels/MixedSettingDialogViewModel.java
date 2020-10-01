@@ -1,8 +1,8 @@
 package com.sheepapps.englishvalley.viewmodels;
 
-import android.arch.lifecycle.ViewModel;
-import android.databinding.ObservableField;
-import android.databinding.ObservableInt;
+import androidx.lifecycle.ViewModel;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableInt;
 import com.sheepapps.englishvalley.helpers.Constants;
 import com.sheepapps.englishvalley.helpers.PreferencesHelper;
 

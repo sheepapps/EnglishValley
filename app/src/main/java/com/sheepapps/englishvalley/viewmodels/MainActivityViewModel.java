@@ -1,8 +1,8 @@
 package com.sheepapps.englishvalley.viewmodels;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.annotation.NonNull;
 
 import com.sheepapps.englishvalley.R;
 import com.sheepapps.englishvalley.helpers.Constants;

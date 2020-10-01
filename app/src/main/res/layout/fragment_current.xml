@@ -7,19 +7,19 @@
             type="com.sheepapps.englishvalley.viewmodels.CurrentViewModel"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.sheepapps.englishvalley.views.CurrentFragment">
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/current_view_pager"
             app:layout_constraintTop_toBottomOf="@+id/adView_current"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </android.support.v4.view.ViewPager>
+        </androidx.viewpager.widget.ViewPager>
 
         <ProgressBar
             style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
@@ -43,6 +43,6 @@
             android:textSize="12sp"
             android:layout_marginRight="8dp"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

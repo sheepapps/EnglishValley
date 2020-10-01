@@ -52,8 +52,8 @@
     </style>
 
     <style name="cardButtonStyle">
-        <item name="android:background">@android:color/transparent</item>
-        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="background">@android:color/transparent</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
     </style>

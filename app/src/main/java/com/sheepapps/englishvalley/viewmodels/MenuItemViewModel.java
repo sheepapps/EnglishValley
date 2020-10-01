@@ -1,8 +1,8 @@
 package com.sheepapps.englishvalley.viewmodels;
 
 import android.content.Context;
-import android.databinding.BaseObservable;
-import android.databinding.ObservableField;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.ObservableField;
 import android.graphics.drawable.Drawable;
 
 import com.sheepapps.englishvalley.databases.system.Storage;

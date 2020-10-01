@@ -1,7 +1,7 @@
 package com.sheepapps.englishvalley.viewmodels;
 
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 import com.sheepapps.englishvalley.helpers.PreferencesHelper;
 
 public class MenuViewModel extends ViewModel {

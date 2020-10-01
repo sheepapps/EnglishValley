@@ -1,7 +1,7 @@
 package com.sheepapps.englishvalley.databases;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
 
 import com.sheepapps.englishvalley.databases.system.Animation;
 import com.sheepapps.englishvalley.databases.system.Description;
