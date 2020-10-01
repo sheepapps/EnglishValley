@@ -11,10 +11,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.gjiazhe.panoramaimageview.GyroscopeObserver;
 import com.sheepapps.englishvalley.R;
 import com.sheepapps.englishvalley.adapters.MenuAdapter;
 import com.sheepapps.englishvalley.databinding.FragmentMenuBinding;
+import com.sheepapps.englishvalley.network.QuotesRepositoryKt;
 import com.sheepapps.englishvalley.viewmodels.MenuViewModel;
 
 
@@ -37,7 +39,7 @@ public class MenuFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(MenuViewModel.class);
         gyroscopeObserver = new GyroscopeObserver();
-        gyroscopeObserver.setMaxRotateRadian(Math.PI/2);
+        gyroscopeObserver.setMaxRotateRadian(Math.PI / 2);
     }
 
     @Override
@@ -57,6 +59,8 @@ public class MenuFragment extends Fragment {
         GridLayoutManager manager = new GridLayoutManager(getContext(), MenuAdapter.sColumnCount);
         menuRecyclerView.setLayoutManager(manager);
         manager.scrollToPositionWithOffset(mViewModel.getMenuIndex(), mViewModel.getMenuPosition());
+        if (QuotesRepositoryKt.getQuoteList().isEmpty())
+            QuotesRepositoryKt.getQuotes();
         return mBinding.getRoot();
     }
 
@@ -75,7 +79,7 @@ public class MenuFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mViewModel.saveMenuIndex(((LinearLayoutManager)mBinding.menuRecyclerView.getLayoutManager())
+        mViewModel.saveMenuIndex(((LinearLayoutManager) mBinding.menuRecyclerView.getLayoutManager())
                 .findFirstVisibleItemPosition());
         View view = mBinding.menuRecyclerView.getChildAt(0);
         mViewModel.saveMenuPosition((view == null) ? 0 : (view.getTop() - mBinding.menuRecyclerView
