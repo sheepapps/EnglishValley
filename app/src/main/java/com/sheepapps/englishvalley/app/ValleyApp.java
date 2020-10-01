@@ -3,6 +3,7 @@ package com.sheepapps.englishvalley.app;
 import android.app.Application;
 import android.content.SharedPreferences;
 import com.huma.room_for_asset.RoomAsset;
+import com.sheepapps.englishvalley.API.RetrofitInstance;
 import com.sheepapps.englishvalley.databases.Migrations;
 import com.sheepapps.englishvalley.databases.ValleyRoomDatabase;
 
@@ -26,6 +27,7 @@ public class ValleyApp extends Application {
                 .allowMainThreadQueries()
                 .addMigrations(Migrations.MIGRATION_2_3)
                 .build();
+        RetrofitInstance.INSTANCE.getExtra();
     }
 
     public static ValleyApp getInstance() {

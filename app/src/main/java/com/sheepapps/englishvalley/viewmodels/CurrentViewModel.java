@@ -72,7 +72,6 @@ public class CurrentViewModel extends ViewModel {
             case Constants.Categories.CATEGORY_PHILOSOPHY: mWords = dao.getPhilosophies(); break;
             case Constants.Categories.CATEGORY_PROVERB: mWords = dao.getProverbs(); break;
             case Constants.Categories.CATEGORY_QUOTE: {
-
                 ArrayList<Quote> words = new ArrayList<>();
                 words.addAll(RetrofitInstance.INSTANCE.getExtra());
                 words.addAll(dao.getQuotes());
