@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
@@ -13,6 +15,7 @@ buildscript {
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
+    mavenCentral()
 }
 
 check.dependsOn 'lint'
@@ -36,6 +39,7 @@ android {
         versionName "1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -94,6 +98,14 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     implementation "com.github.humazed:RoomAsset:1.0.3"
     implementation 'com.google.android.gms:play-services-ads:15.0.1'
+
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'com.android.support:multidex:1.0.3'
 }
 
 allprojects {
