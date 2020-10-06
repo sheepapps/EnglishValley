@@ -29,6 +29,13 @@ object RetrofitInstance {
             GlobalScope.launch {
                 lateinit var fact : Facts
                 if (api.getApi().awaitResponse().isSuccessful) fact = api.getApi().awaitResponse().body() as Facts
+
+                val fct = if (api.getApi().awaitResponse().isSuccessful) {
+                    api.getApi().awaitResponse().body() as Facts
+                } else {
+                    null
+                }
+
                 withContext(Dispatchers.Main) {
                     Toast.makeText(ValleyApp.getInstance(),"Facts about cats add to quote directory",Toast.LENGTH_LONG).show()
                     for (item in 1..7) {
