@@ -1,27 +1,22 @@
 package com.sheepapps.englishvalley.views;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.crashlytics.android.Crashlytics;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
+
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.sheepapps.englishvalley.R;
 import com.sheepapps.englishvalley.app.ValleyApp;
 import com.sheepapps.englishvalley.dialogs.MixedSettingsDialog;
 import com.sheepapps.englishvalley.viewmodels.MainActivityViewModel;
 import com.sheepapps.englishvalley.viewmodels.MenuItemViewModel;
-import net.hockeyapp.android.CrashManager;
-import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements
         MenuItemViewModel.OnMenuItemClickedListener, BottomNavigationView.OnNavigationItemSelectedListener{

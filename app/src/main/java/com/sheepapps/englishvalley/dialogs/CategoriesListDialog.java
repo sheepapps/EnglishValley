@@ -1,10 +1,10 @@
 package com.sheepapps.englishvalley.dialogs;
 
 import android.app.Dialog;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import com.sheepapps.englishvalley.app.ValleyApp;
 import com.sheepapps.englishvalley.databases.system.Storage;
 import java.util.List;

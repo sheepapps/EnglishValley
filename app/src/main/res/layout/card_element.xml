@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
@@ -7,7 +8,7 @@
             type="com.sheepapps.englishvalley.viewmodels.CardViewModel" />
     </data>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,7 +118,7 @@
                             style="@style/cardButtonStyle"
                             android:layout_weight="0.3"
                             android:onClick="@{v -> viewModel.onShareClicked()}"
-                            android:src="@drawable/ic_share"/>
+                            app:srcCompat="@drawable/ic_share"/>
 
                         <ImageButton
                             android:layout_width="0dp"
@@ -125,7 +126,7 @@
                             style="@style/cardButtonStyle"
                             android:layout_weight="0.3"
                             android:onClick="@{v -> viewModel.onSelectClicked()}"
-                            android:src="@drawable/ic_select"/>
+                            app:srcCompat="@drawable/ic_select"/>
 
                         <ImageButton
                             android:layout_width="0dp"
@@ -134,7 +135,7 @@
                             android:tint="@{viewModel.isFavorite ? @color/colorPrimary : @android:color/black}"
                             android:layout_weight="0.3"
                             android:onClick="@{v -> viewModel.onFavouriteClicked()}"
-                            android:src="@drawable/ic_favorite" />
+                            app:srcCompat="@drawable/ic_favorite" />
 
                     </LinearLayout>
 
@@ -144,6 +145,6 @@
 
         </ScrollView>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </layout>
