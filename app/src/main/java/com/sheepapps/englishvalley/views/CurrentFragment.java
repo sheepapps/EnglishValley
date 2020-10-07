@@ -1,21 +1,29 @@
 package com.sheepapps.englishvalley.views;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.sheepapps.englishvalley.R;
 import com.sheepapps.englishvalley.adapters.CardAdapter;
 import com.sheepapps.englishvalley.app.ValleyApp;
+import com.sheepapps.englishvalley.data.QuoteRetrofit;
+import com.sheepapps.englishvalley.databases.WordAbs;
 import com.sheepapps.englishvalley.databinding.FragmentCurrentBinding;
 import com.sheepapps.englishvalley.helpers.Constants;
+import com.sheepapps.englishvalley.helpers.Event;
 import com.sheepapps.englishvalley.viewmodels.CurrentViewModel;
+
+import java.util.List;
 
 public class CurrentFragment extends Fragment {
 
@@ -25,6 +33,8 @@ public class CurrentFragment extends Fragment {
     private FragmentCurrentBinding mBinding;
     private int mCurrentCategoryId;
     private boolean mIsCategoryVisible;
+    private CardAdapter adapter;
+    private  boolean isLoaded = false;
 
     public static Fragment newInstance(int type) {
         Fragment fragment = new CurrentFragment();
@@ -38,11 +48,65 @@ public class CurrentFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(CurrentViewModel.class);
+
         mCurrentCategoryId = Constants.Categories.MIXED_CATEGORY;
         if (getArguments() != null) {
             mCurrentCategoryId = getArguments().getInt(KEY_CATEGORY, Constants.Categories.MIXED_CATEGORY);
         }
+        observeStatusLoading();
         mViewModel.init(mCurrentCategoryId);
+
+    }
+
+    private void observeStatusLoading(){
+        mViewModel.responseLiveData.observe(this, new Observer<Event<List<QuoteRetrofit>>>() {
+            @Override
+            public void onChanged(@Nullable Event<List<QuoteRetrofit>> listEvent) {
+
+                switch (listEvent.getStatus()){
+
+                    case LOADING: {
+                        Toast.makeText(CurrentFragment.super.getContext(),
+                                "loading quotes...", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    case SUCCESS: {
+                        Toast.makeText(CurrentFragment.super.getContext(),
+                                "loaded quotes", Toast.LENGTH_SHORT).show();
+                        List<WordAbs> mWords = (List<WordAbs>) mViewModel.getWords();
+
+                        isLoaded = true;
+
+                        for(QuoteRetrofit quote: listEvent.getData()){
+                            WordAbs word = new WordAbs();
+                            word.main = quote.getText();
+                            word.category = 13;
+                            word.favorite = 0;
+                            word.favoriteTime = 0;
+                            word.sense = quote.getType();
+                            mWords.add(word);
+
+                        }
+
+                        updateAdapter(mWords.size());
+                        break;
+                    }
+                    case ERROR: {
+                        Toast.makeText(CurrentFragment.super.getContext(),
+                                "loading error", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+
+                }
+
+            }
+        });
+    }
+
+    private void updateAdapter(int count){
+        adapter.notifyDataSetChanged();
+        mViewModel.totalWords.set(count);
+
     }
 
     @Override
@@ -64,8 +128,9 @@ public class CurrentFragment extends Fragment {
         mBinding.setViewModel(mViewModel);
         initAds(mBinding.getRoot());
 
-        CardAdapter adapter = new CardAdapter(getChildFragmentManager(), isCategoryVisible);
+        adapter = new CardAdapter(getChildFragmentManager(), isCategoryVisible);
         adapter.setList(mViewModel.getWords());
+
         mBinding.currentViewPager.setAdapter(adapter);
         mBinding.currentViewPager.addOnPageChangeListener(new WordsListener());
         mBinding.currentViewPager.setCurrentItem(mViewModel.getStorage().current);
@@ -75,7 +140,19 @@ public class CurrentFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        mViewModel.saveData(mBinding.currentViewPager.getCurrentItem());
+
+        if(isLoaded && mBinding.currentViewPager.getCurrentItem() >=
+                mViewModel.getWords().size() - 10){
+            int position = mViewModel.getWords().size() - 11;
+
+            mViewModel.getStorage().completed = position;
+            mViewModel.getStorage().current = position;
+            mViewModel.updateSystemDao();
+
+        } else {
+            mViewModel.saveData(mBinding.currentViewPager.getCurrentItem());
+        }
+
     }
 
     private void initAds(View root) {
