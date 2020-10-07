@@ -1,20 +1,32 @@
 package com.sheepapps.englishvalley.viewmodels;
 
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableInt;
+import android.util.Log;
+
+
 import com.sheepapps.englishvalley.app.ValleyApp;
+import com.sheepapps.englishvalley.data.QuoteRetrofit;
 import com.sheepapps.englishvalley.databases.WordDao;
 import com.sheepapps.englishvalley.databases.WordAbs;
 import com.sheepapps.englishvalley.databases.system.Storage;
 import com.sheepapps.englishvalley.databases.system.SystemDao;
+
 import com.sheepapps.englishvalley.helpers.Constants;
+import com.sheepapps.englishvalley.helpers.Event;
 import com.sheepapps.englishvalley.helpers.MixedHelper;
+import com.sheepapps.englishvalley.helpers.QuotesLoader;
+
+
 import java.util.List;
 
 public class CurrentViewModel extends ViewModel {
     public ObservableInt totalWords = new ObservableInt();
     public ObservableInt currentWord = new ObservableInt();
     public ObservableInt completedWord = new ObservableInt();
+    public MutableLiveData<Event<List<QuoteRetrofit>>> responseLiveData = new MutableLiveData();
+
 
     private String mDescription = "";
     private List<? extends WordAbs> mWords;
@@ -30,6 +42,8 @@ public class CurrentViewModel extends ViewModel {
             initUsual();
         }
     }
+
+
 
     public void saveData(int currentItem) {
         ValleyApp.getInstance().getPreferences().edit()
@@ -66,7 +80,11 @@ public class CurrentViewModel extends ViewModel {
             case Constants.Categories.CATEGORY_PALINDROME: mWords = dao.getPalindromes(); break;
             case Constants.Categories.CATEGORY_PHILOSOPHY: mWords = dao.getPhilosophies(); break;
             case Constants.Categories.CATEGORY_PROVERB: mWords = dao.getProverbs(); break;
-            case Constants.Categories.CATEGORY_QUOTE: mWords = dao.getQuotes(); break;
+            case Constants.Categories.CATEGORY_QUOTE: mWords = dao.getQuotes();
+
+                new QuotesLoader(responseLiveData);
+
+                break;
             case Constants.Categories.CATEGORY_RIDDLE: mWords = dao.getRiddles(); break;
             case Constants.Categories.CATEGORY_SILENT: mWords = dao.getSilents(); break;
             case Constants.Categories.CATEGORY_SYMBOL: mWords = dao.getSymbols(); break;
@@ -110,5 +128,9 @@ public class CurrentViewModel extends ViewModel {
 
     public Storage getStorage() {
         return mStorage;
+    }
+
+    public void updateSystemDao(){
+        mSystemDao.updateStorage(mStorage);
     }
 }

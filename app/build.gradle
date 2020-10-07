@@ -1,15 +1,20 @@
 apply plugin: 'com.android.application'
 buildscript {
+    ext.kotlinVersion = '1.4.0'
     repositories {
-        maven { url 'https://maven.fabric.io/public' }
+        maven { url 'https://maven.fabric.io/public'}
         google()
         jcenter()
+
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.0"
     }
 }
+
+
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -36,6 +41,8 @@ android {
         versionName "1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -67,6 +74,10 @@ task checkstyle(type: Checkstyle) {
     classpath = files()
 }
 
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+
 dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'net.hockeyapp.android:HockeySDK:5.1.0'
@@ -94,6 +105,15 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     implementation "com.github.humazed:RoomAsset:1.0.3"
     implementation 'com.google.android.gms:play-services-ads:15.0.1'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.0"
+
 }
 
 allprojects {
@@ -103,3 +123,4 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 }
+
